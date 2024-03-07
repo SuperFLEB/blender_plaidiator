@@ -1,16 +1,19 @@
+import bpy
 from enum import Enum
 from bpy.types import Panel, UIList, UILayout, Node, bpy_struct
+from bpy.utils import register_class, unregister_class
 from ..operator import stripe as stripe_op
-from ..lib import stripe as stripe_lib, node_group as node_group_lib
+from ..lib import pkginfo, stripe as stripe_lib, node_group as node_group_lib
 from ..props import plaidiator as plaidiator_props
 
 if "_LOADED" in locals():
     import importlib
 
-    for mod in (stripe_lib, node_group_lib, stripe_op, plaidiator_props):  # list all imports here
+    for mod in (pkginfo, stripe_lib, node_group_lib, stripe_op, plaidiator_props):  # list all imports here
         importlib.reload(mod)
 _LOADED = True
 
+package_name = pkginfo.package_name()
 last_seen_node = None
 
 
@@ -119,6 +122,24 @@ class NODE_PT_plaidiator_detail(Panel):
             return
 
         layout.label(text="Unknown node type")
+
+
+def set_panel_category_from_prefs() -> None:
+    """Set the panel's category (tab) from the n_panel_location preference"""
+    try:
+        location = bpy.context.preferences.addons[package_name].preferences.n_panel_location
+        NODE_PT_plaidiator_detail.bl_category = location
+    except AttributeError:
+        # This means the preferences aren't set up, so just pass and use the default
+        pass
+
+
+def update_panel_category() -> None:
+    """Set the panel's category (tab) from the n_panel_location preference and unregister/reregister the panel"""
+    unregister_class(NODE_PT_plaidiator_detail)
+    set_panel_category_from_prefs()
+    register_class(NODE_PT_plaidiator_detail)
+
 
 
 REGISTER_CLASSES = [NODE_PT_plaidiator_detail, NODE_UL_stripe_list]

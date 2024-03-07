@@ -18,7 +18,7 @@ bl_info = {
     "name": "Plaidiator",
     "description": "Create plaids and tartans easily with this addon",
     "author": "FLEB (a.k.a. SuperFLEB)",
-    "version": (0, 1, 0),
+    "version": (0, 1, 1),
     "blender": (3, 6, 0),
     "location": "View3D > Object",
     "warning": "",  # used for warning icon and text in addons panel
@@ -43,6 +43,10 @@ registerable_modules = [
 
 
 def register() -> None:
+    # Register prefs separately so we can set the n-panel's "bl_category" before the n-panel gets registered
+    addon.register_classes([preferences_panel])
+    n_panel.set_panel_category_from_prefs()
+
     addon.warn_unregisterable(registerable_modules)
     addon.register_classes(registerable_modules)
     addon.register_functions(registerable_modules)
@@ -50,10 +54,14 @@ def register() -> None:
 
 
 def unregister() -> None:
-    del bpy.types.WindowManager.plaidiator_globals
+    try:
+        del bpy.types.WindowManager.plaidiator_globals
+    except AttributeError:
+        pass
     addon.unregister_menus(menus)
     addon.unregister_functions(registerable_modules)
     addon.unregister_classes(registerable_modules)
+    addon.unregister_classes([preferences_panel])
 
 
 if __name__ == "__main__":

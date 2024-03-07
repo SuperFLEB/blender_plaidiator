@@ -9,19 +9,13 @@ you to easily create and edit plaid patterns. After installing and activating th
 now see "Plaidiator Plaid" as something you can Add in the shader editor (in the Shift-A "Add" menu),
 and there will be a new N-Panel in the Shader Editor to edit these plaid patterns.
 
-## Notes and Caveats
-
-*This addon is currently in early and active development.* Keep in mind that...
-
-* It may contain bugs.
-* It might not work in Blender 4.x. It does a lot with nodegroups, that interface changed in 4.0,
-  and as of this writing I haven't done the pass of checking 4.x compatibility.
-* Patterns created with it may not be editable in future versions of the plugin.
-
 ## To install
 
 Either install the ZIP file from the release, clone this repository and use the
 build_release.py script to build a ZIP file that you can install into Blender.
+
+Once installed, you can set the location of the Plaidiator N-panel to either a Plaidiator tab, or under
+the Node tab, using the Preferences panel for the addon.
 
 ## To use
 

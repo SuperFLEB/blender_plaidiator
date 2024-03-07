@@ -34,19 +34,12 @@ class ColorStop:
 
 def add_stop(stops: list[ColorStop], position: float, rgba: tuple[float, float, float, float],
              overwrite: bool = False) -> list[ColorStop]:
-
-    print("Add stop", position, [c for c in rgba])
-
     existing_index = next((index for index, stop in enumerate(stops) if float_lib.equal(stop.position, position)), None)
     if existing_index is not None and not overwrite:
-        print("Add stop fail")
         return stops
     if existing_index is not None:
-        print("Replace stop", existing_index)
         stops[existing_index] = ColorStop(position=position, rgba=rgba)
         return stops
-
-    print("Add add stop", position, [c for c in rgba])
     new_index = next((index for index, stop in enumerate(stops) if float_lib.gte(stop.position, position)), len(stops))
     stops.insert(new_index, ColorStop(position=position, rgba=rgba))
     return stops
@@ -63,8 +56,6 @@ def stripe_set_to_stops(stripe_set: StripeSet) -> list[ColorStop]:
         ColorStop(position=0, rgba=stripe_set.background_rgba)
     ]
 
-    print("Stops to start", stops)
-
     filtered_stripes = [s for s in stripe_set.stripes if not float_lib.equal(s.width, 0)]
 
     for stripe in filtered_stripes[::_PAINT_ORDER]:
@@ -77,10 +68,8 @@ def stripe_set_to_stops(stripe_set: StripeSet) -> list[ColorStop]:
         if overpainted_stops:
             # Remove overpainted stops and add end
             stops = [s for s in stops if s not in overpainted_stops]
-            print("Stops after remove", [s for s in stops])
             add_stop(stops, end, overpainted_stops[-1].rgba, True)
         elif not float_lib.gte(end, 1):
-            print("Normal add stop", end)
             add_stop(stops, end, get_color_at(stops, end))
 
         # Add starting stop
