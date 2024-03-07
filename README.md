@@ -68,3 +68,5 @@ The addon makes a new nodegroup each time you add a Plaidiator Plaid. Inside thi
 Plaidiator tick. It's driven primarily by the two Color Ramp nodes, which you should **not** delete or modify
 directly. Modifications will be cleared whenever the Plaidiator N-Panel is used, and deleting the nodes may cause
 the Plaid not to be editable by the Plaidiator addon any more. Use the Plaidiator N-panel to modify the pattern.
+
+*(And, yes, the plaid patterns used in the header image above were made using Plaidiator.)*
