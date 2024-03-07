@@ -34,9 +34,13 @@ Once the addon is installed and activated...
 4. Add or connect a Texture Coordinate, UV Map, or other vector input to the Vector socket. The material
    should now show a plaid texture.
 5. Open the N-Panel in the Shader Editor (N), and go to the Plaidiator tab.
-6. In this panel, you can add, remove, arrange, and modify the stripes in the plaid pattern. Each stripe
+6. Select the Plaidiator Plaid node you want to edit.
+7. When you select the node, the Plaidiator panel should show the plaid pattern editor for the node.
+   In this panel, you can add, remove, arrange, and modify the stripes in the plaid pattern. Each stripe
    has a color, a center position, and a width. Stripes are painted from the bottom up, so stripes higher
    in the list will cover stripes lower in the list. Get creative!
+
+![Plaidiator](docs_support/quick-and-dirty-screenshot.png)
 
 ## The Details
 
