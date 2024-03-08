@@ -20,7 +20,7 @@ bl_info = {
     "author": "FLEB (a.k.a. SuperFLEB)",
     "version": (0, 1, 1),
     "blender": (3, 6, 0),
-    "location": "View3D > Object",
+    "location": "Shader Editor > Add > Plaidiator Plaid, Shader Editor > N panel",
     "warning": "",  # used for warning icon and text in addons panel
     "doc_url": "https://github.com/SuperFLEB/blender_plaidiator",
     "tracker_url": "https://github.com/SuperFLEB/blender_plaidiator/issues",

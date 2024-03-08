@@ -1,7 +1,7 @@
 from . import n_panel
 from ..lib import pkginfo
 from bpy.types import AddonPreferences, bpy_struct
-from bpy.props import EnumProperty
+from bpy.props import EnumProperty, BoolProperty
 
 if "_LOADED" in locals():
     import importlib
@@ -38,9 +38,18 @@ class PlaidiatorPrefsPanel(AddonPreferences):
         set=set_location
     )
 
+    new_stripe_copy: BoolProperty(
+        name="Creating a new stripe copies the selected stripe",
+        description="When adding a stripe, copy the selected stripe's color and position. If unchecked, the default stripe, a red stripe in the middle, is created.",
+        default=True
+    )
+
     def draw(self, context: bpy_struct) -> None:
         layout = self.layout
         layout.prop(self, "n_panel_location")
+        fiddly_box = layout.box()
+        fiddly_box.label(text="Fiddly little tweaks")
+        fiddly_box.prop(self, "new_stripe_copy")
 
 
 REGISTER_CLASSES = [PlaidiatorPrefsPanel]

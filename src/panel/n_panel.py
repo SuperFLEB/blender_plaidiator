@@ -83,7 +83,7 @@ class NODE_PT_plaidiator_detail(Panel):
         up_op = ops_column.operator(stripe_op.PLAIDIATOR_OT_MoveStripeUp.bl_idname, icon='TRIA_UP', text="")
         down_op = ops_column.operator(stripe_op.PLAIDIATOR_OT_MoveStripeDown.bl_idname, icon='TRIA_DOWN', text="")
 
-        remove_op.stripe_index = up_op.stripe_index = down_op.stripe_index = p_globals.get(f"{hv}_index")
+        add_op.stripe_index = remove_op.stripe_index = up_op.stripe_index = down_op.stripe_index = p_globals.get(f"{hv}_index")
         add_op.hv = remove_op.hv = up_op.hv = down_op.hv = hv
 
     def draw(self, context: bpy_struct) -> None:
